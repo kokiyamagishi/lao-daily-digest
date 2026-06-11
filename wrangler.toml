@@ -1,0 +1,10 @@
+name = "lao-digest-api"
+main = "worker.js"
+compatibility_date = "2026-06-10"
+
+kv_namespaces = [
+  { binding = "NEWS_KV", id = "YOUR_KV_NAMESPACE_ID" }
+]
+
+[vars]
+# API_SECRET_KEY = "..." # wrangler secret put API_SECRET_KEY で設定するためここには記載しません
