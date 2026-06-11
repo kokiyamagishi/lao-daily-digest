@@ -76,7 +76,7 @@ def generate_articles_via_gemini(raw_data):
 
 JSON構造の定義:
 [
-  {
+  {{
     "id": "auto-uuid",
     "category": "経済" または "社会" または "国際" または "観光",
     "title": "日本語のタイトル",
