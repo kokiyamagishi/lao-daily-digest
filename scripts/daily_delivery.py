@@ -3,7 +3,6 @@ import os
 import json
 import requests
 import feedparser
-from facebook_scraper import get_posts
 
 # 設定
 JSON_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../src/data/news.json')
@@ -17,39 +16,51 @@ FACEBOOK_PAGES = [
 ]
 
 def fetch_facebook_news():
-    raw_posts = []
-    print("Fetching Facebook posts...")
-    for page in FACEBOOK_PAGES:
-        try:
-            # 最新の3件の投稿を取得
-            for post in get_posts(page["id"], pages=1):
-                if post.get("text"):
-                    raw_posts.append({
-                        "source": page["name"],
-                        "text": post["text"][:1000], # 制限付き長さを切り出す
-                        "date": str(post.get("time")),
-                        "url": post.get("post_url") or f"https://facebook.com/{page['id']}"
-                    })
-        except Exception as e:
-            print(f"Failed to fetch posts from {page['name']}: {e}")
-    return raw_posts
+    print("Fetching Facebook posts using Playwright JS wrapper...")
+    try:
+        script_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'scrape_fb.cjs')
+        import subprocess
+        result = subprocess.run(['node', script_path], capture_output=True, text=True, check=True)
+        posts = json.loads(result.stdout)
+        print(f"Successfully scraped {len(posts)} posts from Facebook via Playwright.")
+        return posts
+    except Exception as e:
+        print(f"Failed to fetch Facebook posts using Playwright: {e}")
+        return []
 
 def fetch_rss_news():
     raw_news = []
-    # KPL Web RSS (例)
     print("Fetching RSS feeds...")
-    kpl_rss = "http://kpl.gov.la/EN/rss.aspx"
-    try:
-        feed = feedparser.parse(kpl_rss)
-        for entry in feed.entries[:5]:
-            raw_news.append({
-                "source": "Lao News Agency (KPL)",
-                "text": f"{entry.title}\n{entry.description}",
-                "date": entry.get("published", ""),
-                "url": entry.link
-            })
-    except Exception as e:
-        print(f"Failed to fetch KPL RSS: {e}")
+    
+    feeds = [
+        {"name": "Lao News Agency (KPL)", "url": "http://kpl.gov.la/EN/rss.aspx", "limit": 5},
+        {"name": "Laotian Times", "url": "https://laotiantimes.com/feed/", "limit": 5},
+        {"name": "Google News (Laos)", "url": "https://news.google.com/rss/search?q=Laos&hl=en-US&gl=US&ceid=US:en", "limit": 10}
+    ]
+    
+    for f in feeds:
+        try:
+            print(f"Parsing feed: {f['name']}")
+            feed = feedparser.parse(f["url"])
+            count = 0
+            for entry in feed.entries:
+                if count >= f["limit"]:
+                    break
+                text = entry.title
+                if hasattr(entry, "description") and entry.description:
+                    text += f"\n{entry.description}"
+                elif hasattr(entry, "summary") and entry.summary:
+                    text += f"\n{entry.summary}"
+                
+                raw_news.append({
+                    "source": f["name"],
+                    "text": text[:1500],
+                    "date": entry.get("published") or entry.get("updated") or "",
+                    "url": entry.link
+                })
+                count += 1
+        except Exception as e:
+            print(f"Failed to fetch {f['name']} RSS: {e}")
         
     return raw_news
 
@@ -100,7 +111,7 @@ JSON構造の定義:
 {json.dumps(raw_data, ensure_ascii=False, indent=2)}
 """
 
-    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"
+    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent"
     payload = {
         "contents": [{"parts": [{"text": prompt_instruction}]}]
     }
@@ -121,6 +132,52 @@ JSON構造の定義:
     except Exception as e:
         print(f"Gemini API invocation failed: {e}")
         return []
+
+def get_themed_image(article):
+    title = article.get("title", "").lower()
+    content = article.get("content", "").lower()
+    summary = article.get("summary", "").lower()
+    category = article.get("category", "")
+    
+    full_text = f"{title} {content} {summary}"
+    
+    if any(k in full_text for k in ["ベトナム", "vietnam", "外交", "首脳", "両国", "関係", "cooperation", "diplomacy"]):
+        return "/lao_vn_coop.png"
+    elif any(k in full_text for k in ["王女", "皇室", "王室", "palace", "royal", "princess"]):
+        return "/thai_royal_memorial.png"
+    elif any(k in full_text for k in ["洞窟", "遭難", "救助", "cave", "rescue"]):
+        return "/lao_cave_rescue.png"
+    elif any(k in full_text for k in ["物流ハブ", "物流拠点", "エネルギーハブ", "logistics hub"]):
+        return "/lao_logistics_hub.png"
+    elif any(k in full_text for k in ["aiva", "ai車両", "aiモデル", "aiネイティブ"]):
+        return "/aiva_ai_car.png"
+    elif any(k in full_text for k in ["電線", "感電", "電線落下", "utility pole", "utility wire"]):
+        return "/donnoun_wire_safety.png"
+    elif any(k in full_text for k in ["廃棄物", "医療", "病院", "waste", "medical", "clinic", "health"]):
+        return "/lao_waste_proj.png"
+    elif any(k in full_text for k in ["植樹", "森林", "環境", "tree", "forest", "arbour", "environment"]):
+        return "/lao_tree_plant.png"
+    elif any(k in full_text for k in ["鉄道", "列車", "高速鉄道", "駅", "railway", "train"]):
+        return "/lao_railway.png"
+    elif any(k in full_text for k in ["バス", "ev", "電気", "電動", "electricity", "energy"]):
+        return "/lao_ev_bus.png"
+    elif any(k in full_text for k in ["コーヒー", "珈琲", "農業", "coffee", "agro"]):
+        return "/lao_coffee.png"
+    elif any(k in full_text for k in ["道路", "インフラ", "ハブ", "接続", "road", "infrastructure", "hub"]):
+        return "/lao_road.png"
+    elif any(k in full_text for k in ["寺", "仏教", "祭り", "観光", "temple", "festival", "tourism"]):
+        return "/lao_temple.png"
+        
+    if category == "国際":
+        return "/lao_vn_coop.png"
+    elif category == "社会":
+        return "/lao_living_info.png"
+    elif category == "経済":
+        return "/lao_info_econ.png"
+    elif category == "観光":
+        return "/lao_temple.png"
+        
+    return "/lao_patuxai.png"
 
 def main():
     fb_news = fetch_facebook_news()
@@ -146,22 +203,61 @@ def main():
     else:
         existing_data = []
         
+    # Build sets for deduplication
     existing_ids = {art["id"] for art in existing_data}
+    existing_titles = {art.get("title", "").strip().lower() for art in existing_data}
     
+    # Custom keywords for semantic deduplication of known hot topics
+    has_princess_death = any("王女" in art.get("title", "") and ("逝去" in art.get("title", "") or "逝去" in art.get("summary", "")) for art in existing_data)
+    has_cave_rescue = any("洞窟" in art.get("title", "") and ("救助" in art.get("title", "") or "水害" in art.get("title", "") or "洪水" in art.get("title", "")) for art in existing_data)
+    has_logistics_hub = any("ハブ" in art.get("title", "") and "首相" in art.get("title", "") for art in existing_data)
+
     merged_data = []
-    # 新しい記事を追加（ID重複防止）
+    added_count = 0
+    
     for art in new_articles:
-        if art["id"] not in existing_ids:
+        art_id = art.get("id")
+        art_title = art.get("title", "").strip()
+        title_lower = art_title.lower()
+        
+        # Deduplication checks
+        if art_id in existing_ids or title_lower in existing_titles:
+            continue
+            
+        # Semantic checks
+        if "王女" in art_title and ("逝去" in art_title or "逝去" in art.get("summary", "")):
+            if has_princess_death:
+                continue
+            has_princess_death = True
+            
+        if "洞窟" in art_title and ("救助" in art_title or "水害" in art_title or "洪水" in art_title):
+            if has_cave_rescue:
+                continue
+            has_cave_rescue = True
+            
+        if "ハブ" in art_title and "首相" in art_title:
+            if has_logistics_hub:
+                continue
+            has_logistics_hub = True
+
+        # Assign themed image if empty
+        if not art.get("image") or art.get("image") == "":
+            art["image"] = get_themed_image(art)
+            
+        merged_data.append(art)
+        added_count += 1
+            
+    # 古い記事を結合 (Ensure mock articles are filtered out from existing data)
+    mock_ids = {"art-1", "art-2", "art-3", "art-4", "art-5"}
+    for art in existing_data:
+        if art.get("id") not in mock_ids:
             merged_data.append(art)
             
-    # 古い記事を結合
-    merged_data.extend(existing_data)
-    
     # 保存
     with open(JSON_PATH, 'w', encoding='utf-8') as f:
         json.dump(merged_data, f, ensure_ascii=False, indent=2)
         
-    print(f"Pipeline finished. Added {len(new_articles)} new articles successfully.")
+    print(f"Pipeline finished. Added {added_count} new articles successfully.")
 
 if __name__ == '__main__':
     main()
