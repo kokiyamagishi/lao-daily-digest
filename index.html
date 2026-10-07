@@ -1,10 +1,11 @@
 <!doctype html>
 <html lang="ja">
   <head>
+    <link rel="apple-touch-icon" href="/lao_digest_logo.png" />
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lao Digest | AI-Powered Laos News Curation</title>
+    <title>ラオス日刊ダイジェスト | Lao Daily Digest</title>
     
     <!-- Premium Web Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,10 +13,171 @@
     <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     
     <!-- Meta tags for premium look and feel -->
-    <meta name="description" content="ラオスの主要ソーシャルメディアやニュースメディアから、AIリサーチアシスタントが最新のホットニュースを自動抽出し、高度なインテリジェンスをまとめたデイリーダイジェストです。" />
+    <meta name="description" content="ラオス ニュース ダイジェスト (Lao Daily Digest) - 最新 ニュース 、 現地 グルメ 、 観光 ・ 生活 情報 を 日本語 で お届け します。" />
+    <link rel="canonical" href="https://laodailydigest.com/" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://laodailydigest.com/" />
+    <meta property="og:title" content="ラオス日刊ダイジェスト | Lao Daily Digest" />
+    <meta property="og:description" content="ラオス日刊ダイジェスト（Lao Daily Digest）は、ラオスの重要ニュースや現地おすすめグルメ・生活情報を毎日日本語でお届けする情報ポータルサイトです。" />
+    <meta property="og:image" content="https://laodailydigest.com/lao_digest_logo.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://laodailydigest.com/" />
+    <meta property="twitter:title" content="ラオス日刊ダイジェスト | Lao Daily Digest" />
+    <meta property="twitter:description" content="ラオス日刊ダイジェスト（Lao Daily Digest）は、ラオスの重要ニュースや現地おすすめグルメ・生活情報を毎日日本語でお届けする情報ポータルサイトです。" />
+    <meta property="twitter:image" content="https://laodailydigest.com/lao_digest_logo.png" />
   </head>
   <body class="bg-[#050814] text-slate-100 overflow-x-hidden">
-    <div id="root"></div>
+    <div id="root">
+      <!-- Premium Visual Loading Screen for Humans -->
+      <div id="app-loading-screen" style="display: flex; flex-direction: column; align-items: center; justify-content: center; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #faf7f2; z-index: 9999;">
+        <img src="/lao_digest_logo.svg?v=2" alt="Lao Daily Digest" style="width: 140px; height: auto; margin-bottom: 24px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));" />
+        <div style="width: 40px; height: 40px; border: 3px solid rgba(15, 118, 110, 0.1); border-radius: 50%; border-top-color: #0f766e; animation: loader-spin 1s linear infinite; margin-bottom: 16px;"></div>
+        <p style="font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif; font-size: 13px; color: #4b5563; font-weight: 500; letter-spacing: 0.05em; margin: 0;">ラオス日刊ダイジェスト を読み込み中...</p>
+        <style>
+          @keyframes loader-spin { to { transform: rotate(360deg); } }
+        </style>
+      </div>
+      
+      <!-- Visually Hidden Rich SEO Fallback Content for Crawlers -->
+      <div class="seo-fallback" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">
+      <header>
+        <h1 style="color: #0f766e; font-size: 24px; margin-bottom: 10px;">ラオス日刊ダイジェスト | Lao Daily Digest</h1>
+        <p style="font-size: 14px; line-height: 1.6; color: #4b5563;">ラオス日刊ダイジェスト（Lao Daily Digest）は、ラオスの主要メディアやSNS（主にFacebook）からAIが重要ニュースや現地おすすめグルメ・生活情報を自動抽出し、毎日日本語でお届けするオンラインニュースダイジェストです。ビエンチャン、ルアンパバーン、バンビエンなどラオス各地の経済・社会・国際・観光ニュースのほか、現地取材スタッフによるグルメレビュー、レストラン紹介、伝統料理 of レシピ、旅行記・取材レポなどを掲載しています。ラオス在住 of 日本人やラオスが好きな日本人、ビジネスや旅行でラオスに関わるすべての方へ、信頼できるラオス最新情報をいち早くお届けします。本サイトのニュース画像は現地グルメや取材レポなどの実写写真を除き、AI技術により生成されたイメージ画像（🤖 AI生成イメージ）を含んでいます。</p>
+        <p style="font-size: 14px; line-height: 1.6; color: #4b5563;">当サイトは、急速に発展を遂げるラオスのリアルタイムな経済・投資環境、社会インフラの改善、周辺国との二国間関係、環境保全プロジェクトなどのマクロ情報から、ビエンチャンや観光名所ルアンパバーンにおける絶品カフェ・食堂レビュー、生活利便情報（両替、ビザ、気候、simカード）などのミクロ情報まで多角的にカバーしています。ニュース情報のソースは、国営通信社KPLやLaotian Times、Vientiane Timesなどの公的英字紙のほか、現地SNSで注目度の高いローカル一次情報から収集し、ファクトチェックを行ったうえでキュレーションしています。</p>
+        <p style="font-size: 14px; line-height: 1.6; color: #4b5563;">【AIキュレーションプロセスについて】当サイトに掲載されるニュース記事は、最新のデータマイニングおよび大規模言語モデル技術を組み合わせて構築されています。1日2回の自動更新サイクルにより、重複する話題の自動名寄せ、主要ファクトの検索エンジン連携による裏取り、および記事内容を補完する叙情的な水彩画風アイキャッチ画像の生成までをエージェントシステムが一貫して行っています。これにより、読みやすく透明性の高いインテリジェンスを提供することを目指しています。</p>
+        <p style="font-size: 14px; line-height: 1.6; color: #4b5563;">Lao Daily Digest is a premium online intelligence portal and news curation platform that delivers daily news, business reports, local food guide reviews, and travel updates about Laos in Japanese and English. Our mission is to bridge the information gap for expats, tourists, investors, and business professionals interested in the rapidly growing economy of Laos. We cover key regions including Vientiane Capital, Luang Prabang, Vang Vieng, Savannakhet, and Pakse. Our curated sections cover Macro Economics, Social Infrastructure, International Relations, Local Gourmet Guides, Tourism Development, and Practical Living Information such as visa requirements, exchange rates, currency updates, weather, and telecommunications. The portal features automated news gathering, cross-referencing, fact-checking, and AI-assisted custom watercolor illustrations for articles. The content is sourced from leading local news agencies such as KPL (Lao News Agency), Laotian Times, Vientiane Times, and high-engagement local social media feeds.</p>
+        <p style="font-size: 14px; line-height: 1.6; color: #4b5563;">Our editorial and AI agent pipeline runs twice daily to aggregate, de-duplicate, translate, and verify news stories, ensuring the highest standards of reliability and readability. The system leverages state-of-the-art large language models to refine the summaries and provide clear key takeaways for every report. Additionally, we generate custom artistic watercolor paintings as featured header images for each daily update, offering a premium and aesthetically pleasing visual experience. For local restaurant reviews and field reports, our on-site team captures real photos to provide authentic user-generated recommendations. Visitors can subscribe to our RSS feed and sitemap for real-time indexing. We are committed to fostering deeper connections and understanding between Japan, Laos, and the global community by offering transparent, timely, and accessible information on the socio-economic landscape of the Lao People's Democratic Republic.</p>
+      </header>
+      
+      <nav style="margin: 20px 0; padding: 10px; background: #f3f4f6; border-radius: 6px;">
+        <h2 style="font-size: 16px; margin-top: 0;">カテゴリー一覧</h2>
+        <ul style="list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px;">
+          <li><a href="https://laodailydigest.com/category/主要" style="color: #0f766e; text-decoration: none; font-weight: bold;">主要ニュース</a></li>
+          <li><a href="https://laodailydigest.com/category/経済" style="color: #0f766e; text-decoration: none; font-weight: bold;">経済ニュース</a></li>
+          <li><a href="https://laodailydigest.com/category/社会" style="color: #0f766e; text-decoration: none; font-weight: bold;">社会ニュース</a></li>
+          <li><a href="https://laodailydigest.com/category/国際" style="color: #0f766e; text-decoration: none; font-weight: bold;">国際・二国間関係</a></li>
+          <li><a href="https://laodailydigest.com/category/観光" style="color: #0f766e; text-decoration: none; font-weight: bold;">観光・地域開発</a></li>
+          <li><a href="https://laodailydigest.com/category/現地グルメ" style="color: #0f766e; text-decoration: none; font-weight: bold;">現地グルメ・レストランレビュー</a></li>
+          <li><a href="https://laodailydigest.com/category/取材レポ" style="color: #0f766e; text-decoration: none; font-weight: bold;">取材レポート・旅行記</a></li>
+          <li><a href="https://laodailydigest.com/category/生活情報" style="color: #0f766e; text-decoration: none; font-weight: bold;">ラオス生活・役立つ情報</a></li>
+          <li><a href="https://laodailydigest.com/category/基本情報" style="color: #0f766e; text-decoration: none; font-weight: bold;">ラオス基本情報・歴史</a></li>
+        </ul>
+      </nav>
+      
+      <main>
+        <h2 style="font-size: 18px; border-bottom: 2px solid #0f766e; padding-bottom: 5px;">最新ニュース・現地レポート一覧</h2>
+        <ul style="padding-left: 20px;">
+          <li style="margin-bottom: 15px;">
+            <article>
+              <h3 style="font-size: 15px; margin: 0 0 5px 0;"><a href="https://laodailydigest.com/article/20261007-101" style="color: #0f766e; text-decoration: underline;">【政治】サルムサイ・コーマシット氏がラオス新首相に就任、国民議会で選出されソンサイ前首相は議長へ</a> <span style="font-size: 12px; color: #6b7280; font-weight: normal;">(2026-10-07)</span></h3>
+              <p style="font-size: 13px; margin: 0; color: #4b5563;">ラオス第10期国民議会第2回通常会期において、元外相で副首相を務めたサルムサイ・コーマシット氏が新首相に選出・就任しました。ソンサイ・シーパンドン前首相は国民議会議長に就任し、国家指導体制の刷新が図られました。</p>
+            </article>
+          </li>
+          <li style="margin-bottom: 15px;">
+            <article>
+              <h3 style="font-size: 15px; margin: 0 0 5px 0;"><a href="https://laodailydigest.com/article/20261007-102" style="color: #0f766e; text-decoration: underline;">【社会】ラオス公安省、サイバー犯罪・オンライン賭博で過去最多1万人超を拘束、AI悪用詐欺や違法衛星通信を取り締まり</a> <span style="font-size: 12px; color: #6b7280; font-weight: normal;">(2026-10-07)</span></h3>
+              <p style="font-size: 13px; margin: 0; color: #4b5563;">ラオス公安省は2026年1〜9月のサイバー犯罪対策実績を発表し、オンライン詐欺や違法オンラインカジノに関与したとして31カ国・1万651人の容疑者を拘束、153件の事件を解決したと公表しました。</p>
+            </article>
+          </li>
+          <li style="margin-bottom: 15px;">
+            <article>
+              <h3 style="font-size: 15px; margin: 0 0 5px 0;"><a href="https://laodailydigest.com/article/20261007-103" style="color: #0f766e; text-decoration: underline;">【経済】ルアンパバーン・チェンマン橋の建設計画が前進、タイと現地協議を完了し2027年着工・2031年開通へ</a> <span style="font-size: 12px; color: #6b7280; font-weight: normal;">(2026-10-07)</span></h3>
+              <p style="font-size: 13px; margin: 0; color: #4b5563;">ラオスとタイの両国政府は、メコン川を渡りルアンパバーン郡とチョムペット郡を結ぶ全長820メートルの「チェンマン・ルアンパバーン橋」建設計画について現地調査と書類交換を完了し、2027年着工・2031年開通に向けてプロジェクトを加速させています。</p>
+            </article>
+          </li>
+          <li style="margin-bottom: 15px;">
+            <article>
+              <h3 style="font-size: 15px; margin: 0 0 5px 0;"><a href="https://laodailydigest.com/article/20261002-104" style="color: #0f766e; text-decoration: underline;">【社会】ラオス政府、医療保険法と社会保障法の統合法案を策定、10月国民議会への提出に向け社会保護を一体化</a> <span style="font-size: 12px; color: #6b7280; font-weight: normal;">(2026-10-02)</span></h3>
+              <p style="font-size: 13px; margin: 0; color: #4b5563;">ラオス政府は月例閣僚会議において、「医療保険法」と「社会保障法」を包括的に統合する新法案の最終調整を完了し、10月5日開会の第10期国民議会通常会期へ提出して全国民的なセーフティネットの確立を目指すと発表しました。</p>
+            </article>
+          </li>
+          <li style="margin-bottom: 15px;">
+            <article>
+              <h3 style="font-size: 15px; margin: 0 0 5px 0;"><a href="https://laodailydigest.com/article/20261002-105" style="color: #0f766e; text-decoration: underline;">【経済】ラオス・韓国灌漑開発センター、農業用ダム安全性点検の集中研修を実施、ナムチム・ナムプーク両ダムを現地調査</a> <span style="font-size: 12px; color: #6b7280; font-weight: normal;">(2026-10-02)</span></h3>
+              <p style="font-size: 13px; margin: 0; color: #4b5563;">ラオス農林省灌漑局と韓国農漁村公社（KRC）が共同運営する灌漑開発センターは、ダム管理官らを対象とした2か月間にわたる構造安全点検研修を実施し、ビエンチャン県ナムチムダム等での実践的な耐震・漏水調査を完了しました。</p>
+            </article>
+          </li>
+          <li style="margin-bottom: 15px;">
+            <article>
+              <h3 style="font-size: 15px; margin: 0 0 5px 0;"><a href="https://laodailydigest.com/article/20261002-106" style="color: #0f766e; text-decoration: underline;">【社会】北部水害被災地、水減退に伴い泥土除去と浸水車両の回収・道路インフラ復旧作業が本格化</a> <span style="font-size: 12px; color: #6b7280; font-weight: normal;">(2026-10-02)</span></h3>
+              <p style="font-size: 13px; margin: 0; color: #4b5563;">台風メイサークによる豪雨被害を受けたルアンナムター県やウドムサイ県等の北部被災地において、河川の水位低下に伴い自治体と住民による大規模な泥土撤去、水没車両の回収、ならびに損壊道路の応急補旧作業が急ピッチで進められています。</p>
+            </article>
+          </li>
+          <li style="margin-bottom: 15px;">
+            <article>
+              <h3 style="font-size: 15px; margin: 0 0 5px 0;"><a href="https://laodailydigest.com/article/20261002-101" style="color: #0f766e; text-decoration: underline;">【国際】ラオスが議長国を務める「ASEAN女性起業家ネットワーク（AWEN）フォーラム2026」、ビエンチャンで開催</a> <span style="font-size: 12px; color: #6b7280; font-weight: normal;">(2026-10-02)</span></h3>
+              <p style="font-size: 13px; margin: 0; color: #4b5563;">2026〜2027年期のAWEN議長国を務めるラオスは、東南アジア各国の女性実業家や政策決定者らが集う「AWENフォーラム＆アワード2026」をビエンチャンで開催し、女性の経済参画と中小零細企業のデジタル革新を後押ししました。</p>
+            </article>
+          </li>
+          <li style="margin-bottom: 15px;">
+            <article>
+              <h3 style="font-size: 15px; margin: 0 0 5px 0;"><a href="https://laodailydigest.com/article/20261002-102" style="color: #0f766e; text-decoration: underline;">【社会】日本の無償資金協力によるチャオ・アヌウォン・スタジアムの大規模改修、10月に正式引き渡しへ</a> <span style="font-size: 12px; color: #6b7280; font-weight: normal;">(2026-10-02)</span></h3>
+              <p style="font-size: 13px; margin: 0; color: #4b5563;">首都ビエンチャン中心部に位置する歴史あるチャオ・アヌウォン・スタジアムにおいて、日本政府の支援による全天候型陸上トラックや夜間照明の新設工事が完了し、10月中旬にラオス教育スポーツ省へ正式に引き渡される見通しとなりました。</p>
+            </article>
+          </li>
+          <li style="margin-bottom: 15px;">
+            <article>
+              <h3 style="font-size: 15px; margin: 0 0 5px 0;"><a href="https://laodailydigest.com/article/20261002-103" style="color: #0f766e; text-decoration: underline;">【社会】保護当局、不法飼育から保護した絶滅危惧種スローロリス2匹とジャコウネコを保護基金へ引き渡し</a> <span style="font-size: 12px; color: #6b7280; font-weight: normal;">(2026-10-02)</span></h3>
+              <p style="font-size: 13px; margin: 0; color: #4b5563;">ラオス農林省森林検査局と環境警察は、一般住民により不法に捕獲・飼育されていた絶滅危惧種のピグミースローロリス2匹とジャコウネコ1匹を押収し、野生復帰と健康回復を専門に行う野生動物保護基金へ正式に引き渡しました。</p>
+            </article>
+          </li>
+          <li style="margin-bottom: 15px;">
+            <article>
+              <h3 style="font-size: 15px; margin: 0 0 5px 0;"><a href="https://laodailydigest.com/article/20261001-104" style="color: #0f766e; text-decoration: underline;">【国際】ラオス・タイ二国間協力委員会（JC-23）がビエンチャンで開催、ソンサイ首相がタイ副首相兼外相と会談</a> <span style="font-size: 12px; color: #6b7280; font-weight: normal;">(2026-10-01)</span></h3>
+              <p style="font-size: 13px; margin: 0; color: #4b5563;">第23回ラオス・タイ二国間協力委員会（JC-23）の開催に合わせ、タイの副首相兼外相がビエンチャンを公式訪問し、ソンサイ・シーパンドン首相への表敬訪問を行い、国境物流、鉄道延伸、越境煙害対策での協力を確認しました。</p>
+            </article>
+          </li>
+          <li style="margin-bottom: 15px;">
+            <article>
+              <h3 style="font-size: 15px; margin: 0 0 5px 0;"><a href="https://laodailydigest.com/article/20261001-105" style="color: #0f766e; text-decoration: underline;">【社会】ラオス人民革命党第12期中央委員会臨時総会が閉幕、経済再建と国家自立に向けた3つの重要決議を採択</a> <span style="font-size: 12px; color: #6b7280; font-weight: normal;">(2026-10-01)</span></h3>
+              <p style="font-size: 13px; margin: 0; color: #4b5563;">トーンルン・シースリット書記長兼国家主席の主宰のもと開催されていたラオス人民革命党第12期中央委員会臨時総会が閉幕し、経済・金融構造改革と規律強化を柱とする3つの歴史的決議案が全会一致で採択されました。</p>
+            </article>
+          </li>
+          <li style="margin-bottom: 15px;">
+            <article>
+              <h3 style="font-size: 15px; margin: 0 0 5px 0;"><a href="https://laodailydigest.com/article/20261001-106" style="color: #0f766e; text-decoration: underline;">【経済】「メイド・イン・ラオス2026」開幕まであと2日、共同ホスト県フアパンの伝統絹織物と特産品に熱視線</a> <span style="font-size: 12px; color: #6b7280; font-weight: normal;">(2026-10-01)</span></h3>
+              <p style="font-size: 13px; margin: 0; color: #4b5563;">10月3日にラオス・ITECCで開幕する国内最大の物産展「メイド・イン・ラオス2026」を前に会場設営が最終段階を迎え、今年共同ホスト県を務める北部フアパン県の最高級シルク織物や有機茶が大きな注目を集めています。</p>
+            </article>
+          </li>
+          <li style="margin-bottom: 15px;">
+            <article>
+              <h3 style="font-size: 15px; margin: 0 0 5px 0;"><a href="https://laodailydigest.com/article/20261001-101" style="color: #0f766e; text-decoration: underline;">【経済】商工省、10月1日付の全国燃料価格改定を発表、ディーゼルは1リットル36,830キープに</a> <span style="font-size: 12px; color: #6b7280; font-weight: normal;">(2026-10-01)</span></h3>
+              <p style="font-size: 13px; margin: 0; color: #4b5563;">ラオス商工省およびラオス国営燃料公社（LSFE）は、2026年10月1日付の最新石油製品小売価格を発表し、国際原油市場と為替レートの動向を反映した新価格の適用を開始しました。</p>
+            </article>
+          </li>
+          <li style="margin-bottom: 15px;">
+            <article>
+              <h3 style="font-size: 15px; margin: 0 0 5px 0;"><a href="https://laodailydigest.com/article/20261001-102" style="color: #0f766e; text-decoration: underline;">【社会】国民議会、第10期第2回通常会期に向けて直通ホットライン「156」を開設、国民の声を直接集約へ</a> <span style="font-size: 12px; color: #6b7280; font-weight: normal;">(2026-10-01)</span></h3>
+              <p style="font-size: 13px; margin: 0; color: #4b5563;">ラオス国民議会事務局は、10月5日から21日まで開催される第10期国民議会第2回通常会期に先立ち、国民が法案や生活課題に関する意見・要望を直接届けられる無料ホットライン「156」の運用を開始しました。</p>
+            </article>
+          </li>
+          <li style="margin-bottom: 15px;">
+            <article>
+              <h3 style="font-size: 15px; margin: 0 0 5px 0;"><a href="https://laodailydigest.com/article/20261001-103" style="color: #0f766e; text-decoration: underline;">【経済】中国ラオス鉄道、ボーテン発ビエンチャン行きの早朝直行旅客列車を新設、北部住民の日帰り利便性が大幅向上</a> <span style="font-size: 12px; color: #6b7280; font-weight: normal;">(2026-10-01)</span></h3>
+              <p style="font-size: 13px; margin: 0; color: #4b5563;">中国ラオス鉄道公司は、ラオス北部国境のボーテン駅から首都ビエンチャンを結ぶ早朝発の定期旅客列車を新たに運行開始し、ルアンナムターやウドムサイ等の北部住民が同日中に首都で業務を行える新たな移動選択肢を提供しました。</p>
+            </article>
+          </li>
+        </ul>
+      </main>
+      
+      <footer style="margin-top: 30px; padding-top: 15px; border-t: 1px solid #e5e7eb; font-size: 12px; color: #6b7280;">
+        <h2>公式SNSおよび関連リンク</h2>
+        <ul>
+          <li>公式Facebookページ: <a href="https://www.facebook.com/share/19BbovzoUi/?mibextid=wwXIfr" style="color: #0f766e;">ラオス日刊ダイジェスト Facebook</a></li>
+          <li>主要ニュースソース: <ul>
+            <li><a href="https://www.vientianetimes.org.la/" style="color: #0f766e;">Vientiane Times</a></li>
+            <li><a href="https://kpl.gov.la/" style="color: #0f766e;">KPL Lao News Agency</a></li>
+            <li><a href="https://laotiantimes.com/" style="color: #0f766e;">Laotian Times</a></li>
+          </ul></li>
+        </ul>
+        <p>&copy; 2026 Lao Daily Digest. All rights reserved.</p>
+      </footer>
+      </div>
+</div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
